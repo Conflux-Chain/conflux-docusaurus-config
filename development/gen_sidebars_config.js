@@ -4,25 +4,26 @@ const { resolve: presolve } = require("path");
 const mustache = require("mustache");
 const globby = require("globby");
 const simpleGit = require("simple-git");
+const siteDir = process.env.__CFX_DOC_SITE_DIR
 
 const writeFile = promisify(fs.writeFile);
 const {
   docs: { path: docsRootDir, include = ["**/*.{md,mdx}"] },
-} = require(presolve(__dirname, "../docusaurus.config.js")).presets[0][1];
+} = require(presolve(siteDir, "docusaurus.config.js")).presets[0][1];
 const {
   default: processMetadata,
 } = require("@docusaurus/plugin-content-docs/lib/metadata.js");
 
 const template = fs.readFileSync(
-  presolve(__dirname, "./sidebars.generated.json.mustache"),
+  presolve(siteDir, "development/sidebars.generated.json.mustache"),
   "utf-8"
 );
-const configs = require(presolve(__dirname, "../sidebars.js"));
+const configs = require(presolve(siteDir, "sidebars.js"));
 
 const docsDirs = fs
-  .readdirSync(presolve(__dirname, "../docs"))
+  .readdirSync(presolve(siteDir, "docs"))
   .filter((path) =>
-    fs.lstatSync(presolve(__dirname, "../docs", path)).isDirectory()
+    fs.lstatSync(presolve(siteDir, "docs", path)).isDirectory()
   );
 const docsDirsMetadata = {};
 // const gitSubmoduleDir = presolve(__dirname, "../.git/module");
@@ -63,7 +64,7 @@ function processSidebarDoc(mdMetadatas) {
 (async function () {
   await Promise.all(
     docsDirs.map(async (path) => {
-      const absPath = presolve(__dirname, "../docs", path);
+      const absPath = presolve(siteDir, "docs", path);
       const git = simpleGit(absPath);
       const remoteUrl = await promisify(git.getRemotes).call(git, true);
       docsDirsMetadata[path] = {
@@ -88,7 +89,7 @@ function processSidebarDoc(mdMetadatas) {
           showLastUpdateTime: true,
         },
         env: { versioning: false },
-        context: { siteDir: presolve(__dirname, "../"), baseUrl: "/" },
+        context: { siteDir, baseUrl: "/" },
       });
 
       const path = metadata.id.slice(0, metadata.id.indexOf("/"));
@@ -108,7 +109,7 @@ function processSidebarDoc(mdMetadatas) {
   );
 
   return writeFile(
-    presolve(__dirname, `../sidebars.json`),
+    presolve(siteDir, `./sidebars.json`),
     mustache.render(template, {
       config: JSON.stringify(
         eachSidebarDoc(configs.docs, processSidebarDoc(mdMetadatas))

@@ -1,9 +1,10 @@
 const { resolve } = require("path")
+const siteDir = process.env.__CFX_DOC_SITE_DIR
 const stipStyle = require(resolve(
-  __dirname,
+  siteDir,
   "./development/rehype-strip-styles-in-md"
 ))
-const { lang: cfxLang } = require(resolve(__dirname, "./cfxdoc.config.json"))
+const { lang: cfxLang } = require(resolve(siteDir, "./cfxdoc.config.json"))
 const isEN = cfxLang === "en"
 const domainName = isEN
   ? "developer.conflux-chain.org"
@@ -15,7 +16,7 @@ const GH_REPO_URL = isEN
 
 const SITE_URL = "https://" + domainName
 
-const trans = require(resolve(__dirname, "./src/i18n.js"))[cfxLang]
+const trans = require(resolve(siteDir, "./src/i18n.js"))[cfxLang]
 
 process.env.CFX_LANG = cfxLang
 
@@ -115,16 +116,16 @@ const docusaurusConfig = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          path: resolve(__dirname, "./docs"),
+          path: resolve(siteDir, "./docs"),
           routeBasePath: "docs",
-          sidebarPath: resolve(__dirname, "./sidebars.json"),
+          sidebarPath: resolve(siteDir, "./sidebars.json"),
           editUrl: GH_REPO_URL + "/edit/master",
           showLastUpdateTime: true,
           showLastUpdateAuthor: false,
           rehypePlugins: [stipStyle],
         },
         theme: {
-          customCss: resolve(__dirname, "./src/css/custom.css"),
+          customCss: resolve(siteDir, "./src/css/custom.css"),
         },
       },
     ],
