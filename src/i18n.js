@@ -16,6 +16,12 @@ module.exports = {
       "Blockchain oracle combined with cryptographic tools to realize powerful features such as external data feeding, confidential data control, and beyond.",
     "homepage/securityDescription":
       "Ensured by 2 Dimensional protection - Anti double-spend attack protection (consensus-level) and contract code proofreading (application-level).",
+    "LearnAboutConflux": "Learn about Conflux",
+    "RunANode": "Run a Node",
+    "StartBuild": "Start Build",
+    "homepage/LearnDescription": "Learn about technical details of Conflux protocol: ledger structure, consensus, internal contract, incentive mechanism and etc",
+    "homepage/RunDescription": "Learn how to get Conflux client, run a mainnet or testnet node, run an independent chain, run a light client",
+    "homepage/BuildDescription": "Conflux provide SDKs(JavaScript, Go, Java, Python), tools, services to help developers build Dapps on Conflux chain",
   },
   "zh-hans": {
     "Docs": "文档",
@@ -33,5 +39,11 @@ module.exports = {
       "Conflux 使用区块预言机并配合密码学工具，实现数据上链与隐私数据控制等功能，以扩展使用场景。",
     "homepage/securityDescription":
       "从共识层的反双花攻击，到应用层的合约代码检查，Conflux 从始至终为安全保驾护航。",
+    "LearnAboutConflux": "Learn about Conflux",
+    "RunANode": "Run a Node",
+    "StartBuild": "Start Build",
+    "homepage/LearnDescription": "Learn about technical details of Conflux protocol: ledger structure, consensus, internal contract, incentive mechanism and etc",
+    "homepage/RunDescription": "Learn how to get Conflux client, run a mainnet or testnet node, run an independent chain, run a light client",
+    "homepage/BuildDescription": "Conflux provide SDKs(JavaScript, Go, Java, Python), tools, services to help developers build Dapps on Conflux chain",
   },
 };

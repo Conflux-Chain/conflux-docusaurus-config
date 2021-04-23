@@ -1,6 +1,6 @@
 {
   "name": "@cfxjs/docusaurus-config",
-  "version": "0.1.0",
+  "version": "0.1.6",
   "repository": "git@github.com:Conflux-Chain/conflux-docusaurus-config.git",
   "author": "yqrashawn <namy.19@gmail.com>",
   "bin": {
