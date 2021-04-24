@@ -11,32 +11,38 @@ const trans = i18n[process.env.CFX_LANG];
 
 const features = [
   {
-    title: <>{trans.Scalability}</>,
+    title: <>{trans.LearnAboutConflux}</>,
     imageUrl: {
       dark: "img/scalability-dark.svg",
       light: "img/scalability-light.svg",
     },
-    description: <>{trans["homepage/scalabilityDescription"]}</>,
+    description: <>{trans["homepage/LearnDescription"]}</>,
+    link: '/docs/introduction/en/conflux_overview',
+    linkText: 'Learn'
   },
   {
-    title: <>{trans.Extensibility}</>,
+    title: <>{trans.RunANode}</>,
     imageUrl: {
       dark: "img/extensive-dark.svg",
       light: "img/extensive-light.svg",
     },
-    description: <>{trans["homepage/extensibilityDescription"]}</>,
+    description: <>{trans["homepage/RunDescription"]}</>,
+    link: '/docs/conflux-doc/docs/installation',
+    linkText: 'Go'
   },
   {
-    title: <>{trans.Security}</>,
+    title: <>{trans.StartBuild}</>,
     imageUrl: {
       dark: "img/security-dark.svg",
       light: "img/security-light.svg",
     },
-    description: <>{trans["homepage/securityDescription"]}</>,
+    description: <>{trans["homepage/BuildDescription"]}</>,
+    link: '/docs/conflux-doc/docs/send_transaction',
+    linkText: 'Build'
   },
 ];
 
-function Feature({ imageUrl, title, description }) {
+function Feature({ imageUrl, title, description, link, linkText }) {
   const { isDarkTheme } = useThemeContext();
   const theme = isDarkTheme ? "dark" : "light";
   const imgUrl = useBaseUrl(imageUrl[theme]);
@@ -49,6 +55,9 @@ function Feature({ imageUrl, title, description }) {
       )}
       <h3 className="text--center">{title}</h3>
       <p className="text--center">{description}</p>
+      <p className='text--center'>
+        <a className={classnames('button button--outline button--secondary', styles.customButton)} href={link}>{linkText}</a>
+      </p>
     </div>
   );
 }
